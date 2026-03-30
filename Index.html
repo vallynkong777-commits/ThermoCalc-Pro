@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>ThermoCalc Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🔥 ThermoCalc Pro</h1>
+
+<div class="card">
+  <h2>Calcul Déperdition</h2>
+
+  <input type="number" id="surface" placeholder="Surface (m²)">
+  <input type="number" id="u" placeholder="Coefficient U">
+  <input type="number" id="temp" placeholder="Δ Température (°C)">
+
+  <button onclick="calculer()">Calculer</button>
+
+  <h3 id="resultat"></h3>
+</div>
+
+<!-- 💬 Bouton IA flottant -->
+<div id="chatBtn" onclick="toggleChat()">💬</div>
+
+<!-- 🤖 Fenêtre Chat IA -->
+<div id="chatBox">
+  <div class="chat-header">Assistant IA 🔥</div>
+  <div id="chatContent"></div>
+  
+  <input type="text" id="userInput" placeholder="Pose ta question...">
+  <button onclick="envoyer()">Envoyer</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
