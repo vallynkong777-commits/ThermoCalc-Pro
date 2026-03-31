@@ -1,37 +1,46 @@
-function calculer() {
+let chart;
 
-  let surface = document.getElementById("surface").value;
-  let u = document.getElementById("u").value;
-  let temp = document.getElementById("temp").value;
-  let debit = document.getElementById("debit").value;
-  let ponts = document.getElementById("ponts").value;
+function calculer(){
 
-  let parois = surface * u * temp;
-  let ventilation = debit * 0.34 * temp;
-  let total = parois + ventilation + Number(ponts);
+let s = +document.getElementById("surface").value;
+let u = +document.getElementById("u").value;
+let t = +document.getElementById("temp").value;
+let d = +document.getElementById("debit").value;
+let p = +document.getElementById("ponts").value;
 
-  document.getElementById("resParois").innerText =
-    "Parois : " + parois + " W";
+let parois = s*u*t;
+let vent = d*0.34*t;
+let total = parois + vent + p;
 
-  document.getElementById("resVent").innerText =
-    "Ventilation : " + ventilation + " W";
+document.getElementById("total").innerText = total + " W";
 
-  document.getElementById("resTotal").innerText =
-    "Total : " + total + " W";
+/* GRAPH */
+let ctx = document.getElementById("chart");
+
+if(chart) chart.destroy();
+
+chart = new Chart(ctx,{
+type:"doughnut",
+data:{
+labels:["Parois","Ventilation","Ponts"],
+datasets:[{
+data:[parois,vent,p]
+}]
+}
+});
+
 }
 
 /* CHAT */
-function toggleChat() {
-  let box = document.getElementById("chatBox");
-  box.style.display = box.style.display === "none" ? "block" : "none";
+document.getElementById("chatBtn").onclick = () => {
+let box = document.getElementById("chatBox");
+box.style.display = box.style.display==="none"?"block":"none";
+};
+
+function send(){
+let msg = document.getElementById("msg").value;
+let chat = document.getElementById("chatContent");
+
+chat.innerHTML += "<p>Toi: "+msg+"</p>";
+chat.innerHTML += "<p>IA: Vérifie isolation + ventilation.</p>";
 }
-
-function envoyer() {
-  let input = document.getElementById("userInput");
-  let chat = document.getElementById("chatContent");
-
-  chat.innerHTML += "<p><b>Toi:</b> " + input.value + "</p>";
-  chat.innerHTML += "<p><b>IA:</b> Vérifie ton isolation et ton débit d’air.</p>";
-
-  input.value = "";
-    }
