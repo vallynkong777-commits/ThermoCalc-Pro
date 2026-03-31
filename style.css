@@ -1,74 +1,71 @@
 body {
-  font-family: Arial;
-  background: #f1f3f6;
-  margin: 0;
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  display:flex;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
 }
 
-.container {
-  width: 90%;
-  margin: auto;
+/* SIDEBAR */
+.sidebar {
+  width:220px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  padding:20px;
 }
 
-.header {
-  text-align: center;
-  padding: 20px;
+.sidebar h2 {
+  color:#00d4ff;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+/* MAIN */
+.main {
+  flex:1;
+  padding:20px;
+}
+
+/* CARDS */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
 .card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.1);
+  padding:15px;
+  border-radius:15px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* INPUT */
 input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 8px;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
 }
 
-.btn {
-  display: block;
-  margin: 20px auto;
-  padding: 12px 25px;
-  background: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
+/* BUTTON */
+button {
+  margin-top:20px;
+  padding:12px 25px;
+  background:#00d4ff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
 }
 
+/* RESULT */
 .results {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  margin-top:20px;
+  background: rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:15px;
 }
-
-/* CHAT */
-#chatBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: blue;
-  color: white;
-  padding: 15px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-#chatBox {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 280px;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  }
