@@ -1,13 +1,73 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ThermoCalc Pro</title>
-    <script type="module" crossorigin src="./assets/index-BkHyCr6x.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-MZaIzxch.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>ThermoCalc Pro</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>🔥 ThermoCalc</h2>
+  <p>Dashboard</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <h1>Analyse thermique</h1>
+
+  <!-- CARDS -->
+  <div class="cards">
+
+    <div class="card">
+      <h3>Parois</h3>
+      <input id="surface" placeholder="Surface">
+      <input id="u" placeholder="U">
+    </div>
+
+    <div class="card">
+      <h3>Ventilation</h3>
+      <input id="debit" placeholder="Débit air">
+    </div>
+
+    <div class="card">
+      <h3>Température</h3>
+      <input id="temp" placeholder="ΔT">
+    </div>
+
+    <div class="card">
+      <h3>Ponts</h3>
+      <input id="ponts" placeholder="Valeur">
+    </div>
+
+  </div>
+
+  <button onclick="calculer()">Calculer</button>
+
+  <!-- RESULTATS -->
+  <div class="results">
+    <h2>Total</h2>
+    <h1 id="total">0 W</h1>
+  </div>
+
+  <!-- GRAPH -->
+  <canvas id="chart"></canvas>
+
+</div>
+
+<!-- CHAT -->
+<div id="chatBtn">💬</div>
+
+<div id="chatBox">
+  <div id="chatContent"></div>
+  <input id="msg">
+  <button onclick="send()">Send</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+  </html>
