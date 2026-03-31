@@ -1,73 +1,267 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>ThermoCalc Pro</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-<div class="container">
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+    
+    /* Couleurs personnalisées ThermoCalc */
+    --thermo-blue: 217 91% 60%;
+    --thermo-cyan: 188 94% 43%;
+    --thermo-orange: 25 95% 53%;
+    --thermo-red: 0 84% 60%;
+    --thermo-green: 142 76% 36%;
+    --thermo-purple: 262 83% 58%;
+    --thermo-amber: 38 92% 50%;
+  }
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>🔥 ThermoCalc Pro</h1>
-    <p>Analyse thermique intelligente</p>
-  </div>
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
 
-  <!-- GRID -->
-  <div class="grid">
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
 
-    <!-- PAROIS -->
-    <div class="card">
-      <h3>🏠 Parois</h3>
-      <input type="number" id="surface" placeholder="Surface (m²)">
-      <input type="number" id="u" placeholder="Coefficient U">
-    </div>
+@layer utilities {
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+  }
+  
+  .dark .glass {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Gradients */
+  .gradient-thermo {
+    background: linear-gradient(135deg, hsl(var(--thermo-blue)) 0%, hsl(var(--thermo-cyan)) 100%);
+  }
+  
+  .gradient-warm {
+    background: linear-gradient(135deg, hsl(var(--thermo-orange)) 0%, hsl(var(--thermo-red)) 100%);
+  }
+  
+  .gradient-cool {
+    background: linear-gradient(135deg, hsl(var(--thermo-cyan)) 0%, hsl(var(--thermo-blue)) 100%);
+  }
+  
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background-size: 200% 100%;
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+  
+  /* Input focus */
+  .input-focus {
+    @apply transition-all duration-200;
+  }
+  
+  .input-focus:focus {
+    @apply ring-2 ring-primary/50 border-primary;
+  }
+  
+  /* Status badges */
+  .badge-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400;
+  }
+  
+  .badge-warning {
+    @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400;
+  }
+  
+  .badge-danger {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400;
+  }
+  
+  .badge-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400;
+  }
+  
+  /* Number display */
+  .number-display {
+    @apply font-mono tabular-nums;
+  }
+  
+  /* Section dividers */
+  .section-divider {
+    @apply h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+}
 
-    <!-- VENTILATION -->
-    <div class="card">
-      <h3>🌬️ Ventilation</h3>
-      <input type="number" id="debit" placeholder="Débit air (m³/h)">
-    </div>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-    <!-- TEMP -->
-    <div class="card">
-      <h3>🌡️ Température</h3>
-      <input type="number" id="temp" placeholder="Δ Température (°C)">
-    </div>
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    <!-- PONTS -->
-    <div class="card">
-      <h3>🧱 Ponts thermiques</h3>
-      <input type="number" id="ponts" placeholder="Valeur ponts">
-    </div>
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
 
-  </div>
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
 
-  <!-- BOUTON -->
-  <button onclick="calculer()" class="btn">Calculer</button>
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  <!-- RESULTATS -->
-  <div class="results">
-    <h2>Résultats</h2>
-    <p id="resParois"></p>
-    <p id="resVent"></p>
-    <p id="resTotal"></p>
-  </div>
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-</div>
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
 
-<!-- CHAT IA -->
-<div id="chatBtn" onclick="toggleChat()">💬</div>
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
 
-<div id="chatBox">
-  <div class="chat-header">Assistant IA</div>
-  <div id="chatContent"></div>
-  <input type="text" id="userInput" placeholder="Question...">
-  <button onclick="envoyer()">Envoyer</button>
-</div>
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+} import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
 
-<script src="script.js"></script>
-</body>
-  </html>
+createRoot(document.getElementById('root')!).render(
+  
+<StrictMode>
+    <App />
+  </StrictMode>,
+) <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThermoCalc Pro</title>
+    <script type="module" crossorigin src="./assets/index-BkHyCr6x.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-MZaIzxch.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+      </html>
+      import * as React from "react"
+
+const MOBILE_BREAKPOINT = 768
+
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    }
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    return () => mql.removeEventListener("change", onChange)
+  }, [])
+
+  return !!isMobile
+}
+      
