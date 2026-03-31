@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><link rel="manifest" href="manifest.json">
 <meta charset="UTF-8">
 <title>ThermoCalc Pro</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+</head> 
 
 <body>
 
@@ -70,4 +70,8 @@
 
 <script src="script.js"></script>
 </body>
-  </html>
+  </html><button onclick="payer()">🔒 Passer Premium</button> <script>
+if("serviceWorker" in navigator){
+ navigator.serviceWorker.register("sw.js");
+}
+  </script> 
