@@ -1,33 +1,37 @@
-// Calcul thermique
 function calculer() {
+
   let surface = document.getElementById("surface").value;
   let u = document.getElementById("u").value;
   let temp = document.getElementById("temp").value;
+  let debit = document.getElementById("debit").value;
+  let ponts = document.getElementById("ponts").value;
 
-  let perte = surface * u * temp;
+  let parois = surface * u * temp;
+  let ventilation = debit * 0.34 * temp;
+  let total = parois + ventilation + Number(ponts);
 
-  document.getElementById("resultat").innerText =
-    "Déperdition thermique : " + perte + " W";
+  document.getElementById("resParois").innerText =
+    "Parois : " + parois + " W";
+
+  document.getElementById("resVent").innerText =
+    "Ventilation : " + ventilation + " W";
+
+  document.getElementById("resTotal").innerText =
+    "Total : " + total + " W";
 }
 
-// Ouvrir/Fermer chat
+/* CHAT */
 function toggleChat() {
   let box = document.getElementById("chatBox");
   box.style.display = box.style.display === "none" ? "block" : "none";
 }
 
-// Simulation IA
 function envoyer() {
   let input = document.getElementById("userInput");
   let chat = document.getElementById("chatContent");
 
-  let userMsg = input.value;
-
-  chat.innerHTML += "<p><b>Toi:</b> " + userMsg + "</p>";
-
-  let reponse = "Je suis ton assistant thermique 🤖. Vérifie les coefficients U et la ventilation.";
-
-  chat.innerHTML += "<p><b>IA:</b> " + reponse + "</p>";
+  chat.innerHTML += "<p><b>Toi:</b> " + input.value + "</p>";
+  chat.innerHTML += "<p><b>IA:</b> Vérifie ton isolation et ton débit d’air.</p>";
 
   input.value = "";
-}
+    }
