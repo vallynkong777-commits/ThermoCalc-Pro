@@ -7,38 +7,67 @@
 </head>
 <body>
 
-<div class="logo-container">
-  <div class="logo-icon">⚙️🔥</div>
-  <div class="logo-text">
-    <h1>ThermoCalc Pro</h1>
-    <p>Calcul thermique intelligent</p>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🔥 ThermoCalc Pro</h1>
+    <p>Analyse thermique intelligente</p>
   </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- PAROIS -->
+    <div class="card">
+      <h3>🏠 Parois</h3>
+      <input type="number" id="surface" placeholder="Surface (m²)">
+      <input type="number" id="u" placeholder="Coefficient U">
+    </div>
+
+    <!-- VENTILATION -->
+    <div class="card">
+      <h3>🌬️ Ventilation</h3>
+      <input type="number" id="debit" placeholder="Débit air (m³/h)">
+    </div>
+
+    <!-- TEMP -->
+    <div class="card">
+      <h3>🌡️ Température</h3>
+      <input type="number" id="temp" placeholder="Δ Température (°C)">
+    </div>
+
+    <!-- PONTS -->
+    <div class="card">
+      <h3>🧱 Ponts thermiques</h3>
+      <input type="number" id="ponts" placeholder="Valeur ponts">
+    </div>
+
+  </div>
+
+  <!-- BOUTON -->
+  <button onclick="calculer()" class="btn">Calculer</button>
+
+  <!-- RESULTATS -->
+  <div class="results">
+    <h2>Résultats</h2>
+    <p id="resParois"></p>
+    <p id="resVent"></p>
+    <p id="resTotal"></p>
+  </div>
+
 </div>
 
-<div class="card">
-  <h2>Calcul Déperdition</h2>
-
-  <input type="number" id="surface" placeholder="Surface (m²)">
-  <input type="number" id="u" placeholder="Coefficient U">
-  <input type="number" id="temp" placeholder="Δ Température (°C)">
-
-  <button onclick="calculer()">Calculer</button>
-
-  <h3 id="resultat"></h3>
-</div>
-
-<!-- 💬 Bouton IA flottant -->
+<!-- CHAT IA -->
 <div id="chatBtn" onclick="toggleChat()">💬</div>
 
-<!-- 🤖 Fenêtre Chat IA -->
 <div id="chatBox">
-  <div class="chat-header">Assistant IA 🔥</div>
+  <div class="chat-header">Assistant IA</div>
   <div id="chatContent"></div>
-  
-  <input type="text" id="userInput" placeholder="Pose ta question...">
+  <input type="text" id="userInput" placeholder="Question...">
   <button onclick="envoyer()">Envoyer</button>
 </div>
 
 <script src="script.js"></script>
 </body>
-</html>
+  </html>
